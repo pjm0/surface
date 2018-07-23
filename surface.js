@@ -67,11 +67,7 @@ function normalize(v) {
     return v.map(x => x / len);
 }
 
-function sphere_to_cart(spherecoords) {
-    return [spherecoords[0] * sin(spherecoords[1]) * cos(spherecoords[2]),
-            spherecoords[0] * sin(spherecoords[1]) * sin(spherecoords[2]),
-            spherecoords[0] * cos(spherecoords[1])];
-}
+
 
 function Camera(eye_spherecoords, gaze_pt, origin_2d, f) {
     var w = [];
@@ -185,8 +181,13 @@ function Transition() {
         }
     };
 }
+function sphere_to_cart(spherecoords) { // Not currently used
+    return [spherecoords[0] * sin(spherecoords[1]) * cos(spherecoords[2]),
+            spherecoords[0] * sin(spherecoords[1]) * sin(spherecoords[2]),
+            spherecoords[0] * cos(spherecoords[1])];
+}
 
-function draw_grid() {
+function draw_grid() { // Not currently used
     var divisions =50;
     for (var j=0; j<divisions; j++) {
         for (var i=0; i<divisions*2; i++) {
@@ -228,7 +229,7 @@ function draw_all(ticks) {
     points = input_points.map(x => parseFloat(x.value)).map(x => isNaN(x) ? 0 : x);
     if (transition.active) {
         points = transition.points(ticks);
-        console.log(points);
+        //console.log(points);
     }
     draw2d(points);
     draw_iso3d(points);
@@ -239,35 +240,35 @@ function draw_all(ticks) {
 SVG.on(document, 'keydown', function(e) {
     switch(e.keyCode) {
     case 37:
-        console.log("Left");
-        console.log(cam);
+        //console.log("Left");
+        //console.log(cam);
         cam = cam.left();
-        console.log(cam);
+        //console.log(cam);
         e.preventDefault();
         break;
     case 38:
-        console.log("Up");
-        console.log(cam);
+        //console.log("Up");
+        //console.log(cam);
         cam = cam.up();
-        console.log(cam);
+        //console.log(cam);
         e.preventDefault();
         break;
     case 39:
-        console.log("Right");
-        console.log(cam);
+        //console.log("Right");
+        //console.log(cam);
         cam = cam.right();
-        console.log(cam);
+        //console.log(cam);
         e.preventDefault();
         break;
     case 40:
-        console.log("Down");
-        console.log(cam);
+        //console.log("Down");
+        //console.log(cam);
         cam = cam.down();
-        console.log(cam);
+        //console.log(cam);
         e.preventDefault();
         break;
     default:
-        console.log(e);
+        //console.log(e);
     }
 });
 
